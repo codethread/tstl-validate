@@ -2,11 +2,32 @@
   "name": "tstl-validate",
   "version": "0.0.1",
   "description": "Fork and adaptation of valibot for use in typescript-to-lua",
-  "main": "src/index.ts",
+  "main": "./dist/index",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*.lua",
+    "dist/**/*.d.ts"
+  ],
   "scripts": {
+    "build": "tstl && rm ./dist/lualib_bundle.lua",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "codethread",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.0",
+    "@types/node": "^18.16.1",
+    "lua-types": "^2.13.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6",
+    "typescript-to-lua": "^1.17.0"
+  },
+  "packageManager": "yarn@3.6.0",
+  "volta": {
+    "node": "18.16.1"
+  },
+  "dependencies": {
+    "tstl-result": "github:codethread/tstl-result"
+  }
 }
