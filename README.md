@@ -1,10 +1,11 @@
 # tstl Validate
 
-Fork and adaptation of valibot for use in typescript-to-lua, in the context of neovim
+Fork and adaptation of valibot for use in [typescript-to-lua](https://typescripttolua.github.io/), in the context of [neovim](https://neovim.io/)
 
 Please see the original:
-site: https://valibot.dev/
-repo: https://github.com/fabian-hiller/valibot
+
+- site: https://valibot.dev/
+- repo: https://github.com/fabian-hiller/valibot
 
 ## Changes
 
