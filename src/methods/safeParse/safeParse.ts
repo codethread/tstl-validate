@@ -1,4 +1,4 @@
-import { Result, err, ok } from "tstl-result";
+import { Result, err, ok } from "@codethread/tstl-result";
 import { type Issues, ValiError } from "../../error/index";
 import type { BaseSchema, Output, ParseInfo } from "../../types";
 
