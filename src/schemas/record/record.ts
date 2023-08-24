@@ -1,5 +1,5 @@
-import type { Issues } from '../../error/index';
-import type { BaseSchema, Pipe } from '../../types';
+import type { Issues } from "../../error/index";
+import type { BaseSchema, Pipe } from "../../types";
 import {
   executePipe,
   getErrorAndPipe,
@@ -7,15 +7,18 @@ import {
   getPath,
   getPathInfo,
   getPipeInfo,
-} from '../../utils/index';
-import { type StringSchema, string } from '../string/index';
-import type { RecordOutput, RecordInput } from './types';
-import { BLOCKED_KEYS } from './values';
+} from "../../utils/index";
+import { type StringSchema, string } from "../string/index";
+import { type EnumSchema } from "../enumType/index";
+import type { RecordOutput, RecordInput } from "./types";
+import { BLOCKED_KEYS } from "./values";
 
 /**
  * Record key type.
  */
-export type RecordKey = StringSchema<string | number | symbol>;
+export type RecordKey =
+  | StringSchema<string | number | symbol>
+  | EnumSchema<[string, ...string[]]>;
 
 /**
  * Record schema type.
@@ -25,7 +28,7 @@ export type RecordSchema<
   TRecordKey extends RecordKey = StringSchema,
   TOutput = RecordOutput<TRecordKey, TRecordValue>
 > = BaseSchema<RecordInput<TRecordKey, TRecordValue>, TOutput> & {
-  schema: 'record';
+  schema: "record";
   record: { key: TRecordKey; value: TRecordValue };
 };
 
@@ -106,7 +109,7 @@ export function record<
 ): RecordSchema<TRecordValue, TRecordKey> {
   // Get key, value, error and pipe argument
   const { key, value, error, pipe } = (
-    typeof arg2 === 'object' && !Array.isArray(arg2)
+    typeof arg2 === "object" && !Array.isArray(arg2)
       ? { key: arg1, value: arg2, ...getErrorAndPipe(arg3, arg4) }
       : { key: string(), value: arg1, ...getErrorAndPipe(arg2, arg3 as any) }
   ) as {
@@ -121,7 +124,7 @@ export function record<
     /**
      * The schema type.
      */
-    schema: 'record',
+    schema: "record",
 
     /**
      * The record key and value schema.
@@ -145,15 +148,15 @@ export function record<
       // Check type of input
       if (
         !input ||
-        typeof input !== 'object' ||
-        input.toString() !== '[object Object]'
+        typeof input !== "object" ||
+        input.toString() !== "[object Object]"
       ) {
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'record',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "record",
+              message: error || "Invalid type",
               input,
             }),
           ],
@@ -177,7 +180,7 @@ export function record<
 
           // Get current path
           const path = getPath(info?.path, {
-            schema: 'record',
+            schema: "record",
             input,
             key: inputKey,
             value: inputValue,
@@ -186,7 +189,7 @@ export function record<
           // Get parse result of key
           const keyResult = key._parse(
             inputKey,
-            getPathInfo(info, path, 'key')
+            getPathInfo(info, path, "key")
           );
 
           // If there are issues, capture them
@@ -237,7 +240,7 @@ export function record<
         : executePipe(
             output as RecordOutput<TRecordKey, TRecordValue>,
             pipe,
-            getPipeInfo(info, 'record')
+            getPipeInfo(info, "record")
           );
     },
   };
