@@ -1,5 +1,5 @@
-import type { ObjectSchema } from '../../schemas/object/index';
-import { getIssue } from '../../utils/index';
+import type { ObjectSchema } from "../../schemas/object/index";
+import { getIssue } from "../../utils/index";
 
 /**
  * Creates a strict object schema that throws an error if an input contains
@@ -27,16 +27,17 @@ export function strict<TSchema extends ObjectSchema<any>>(
      */
     _parse(input, info) {
       const result = schema._parse(input, info);
-      return !result.issues &&
-        // Check length of input and output keys
-        Object.keys(input as object).length !==
-          Object.keys(result.output).length
+      if (result.issues) return result;
+      const iKeys = Object.keys(input as object);
+      const rKeys = Object.keys(result.output);
+      const newKeys = iKeys.filter((key) => !rKeys.includes(key));
+      return newKeys.length > 0
         ? {
             issues: [
               getIssue(info, {
-                reason: 'object',
-                validation: 'strict',
-                message: error || 'Invalid keys',
+                reason: "object",
+                validation: "strict",
+                message: error || `Invalid keys: ${newKeys.join(",")}`,
                 input,
               }),
             ],

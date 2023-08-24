@@ -5,7 +5,8 @@
     "types": ["lua-types/5.1"],
     "outDir": "dist",
     "baseUrl": "src",
-    "declaration": true
+    "declaration": true,
+    "plugins": [{ "name": "typescript-tstl-plugin" }]
   },
   "include": ["src/**/*"],
   "tstl": {

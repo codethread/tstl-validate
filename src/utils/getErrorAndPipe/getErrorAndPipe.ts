@@ -13,8 +13,6 @@ export function getErrorAndPipe<TPipe extends Pipe<any> | PipeAsync<any>>(
   arg2?: TPipe
 ): { error: string | undefined; pipe: TPipe } {
   const [error, pipe = [] as unknown as TPipe] =
-    !arg1 || typeof arg1 === "string"
-      ? [arg1, arg2]
-      : [null as any as undefined, arg1];
+    !arg1 || typeof arg1 === "string" ? [arg1, arg2] : ["__TSTL_NULL", arg1];
   return { error, pipe };
 }

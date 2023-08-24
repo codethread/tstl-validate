@@ -7,7 +7,6 @@ import {
   getPath,
   getPathInfo,
   getPipeInfo,
-  isLuaTable,
 } from "../../utils/index";
 import type { ObjectInput, ObjectOutput } from "./types";
 
@@ -96,7 +95,11 @@ export function objectAsync<TObjectShape extends ObjectShapeAsync>(
      */
     async _parse(input, info) {
       // Check type of input
-      if (!isLuaTable(input)) {
+      if (
+        !input ||
+        typeof input !== "object" || // will become table in transpilation
+        Array.isArray(input)
+      ) {
         return {
           issues: [
             getIssue(info, {

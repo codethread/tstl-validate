@@ -7,7 +7,6 @@ import {
   getPath,
   getPathInfo,
   getPipeInfo,
-  isLuaTable,
 } from "../../utils/index";
 import type { ObjectOutput, ObjectInput } from "./types";
 
