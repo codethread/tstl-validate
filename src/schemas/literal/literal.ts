@@ -1,5 +1,5 @@
-import type { BaseSchema } from '../../types';
-import { getIssue } from '../../utils/index';
+import type { BaseSchema } from "../../types";
+import { getIssue } from "../../utils/index";
 
 /**
  * Literal schema type.
@@ -8,7 +8,7 @@ export type LiteralSchema<
   TLiteralValue extends string | number,
   TOutput = TLiteralValue
 > = BaseSchema<TLiteralValue, TOutput> & {
-  schema: 'literal';
+  schema: "literal";
   literal: TLiteralValue;
 };
 
@@ -28,7 +28,7 @@ export function literal<TLiteral extends string | number>(
     /**
      * The schema type.
      */
-    schema: 'literal',
+    schema: "literal",
 
     /**
      * The literal value.
@@ -54,9 +54,9 @@ export function literal<TLiteral extends string | number>(
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'literal',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "literal",
+              message: error || "Invalid type, expected literal",
               input,
             }),
           ],

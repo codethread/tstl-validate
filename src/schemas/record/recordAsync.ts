@@ -1,5 +1,5 @@
-import type { Issues } from '../../error/index';
-import type { BaseSchema, BaseSchemaAsync, PipeAsync } from '../../types';
+import type { Issues } from "../../error/index";
+import type { BaseSchema, BaseSchemaAsync, PipeAsync } from "../../types";
 import {
   executePipeAsync,
   getErrorAndPipe,
@@ -7,14 +7,14 @@ import {
   getPath,
   getPathInfo,
   getPipeInfo,
-} from '../../utils/index';
+} from "../../utils/index";
 import {
   type StringSchema,
   string,
   type StringSchemaAsync,
-} from '../string/index';
-import type { RecordInput, RecordOutput } from './types';
-import { BLOCKED_KEYS } from './values';
+} from "../string/index";
+import type { RecordInput, RecordOutput } from "./types";
+import { BLOCKED_KEYS } from "./values";
 
 /**
  * Record key type.
@@ -31,7 +31,7 @@ export type RecordSchemaAsync<
   TRecordKey extends RecordKeyAsync = StringSchema,
   TOutput = RecordOutput<TRecordKey, TRecordValue>
 > = BaseSchemaAsync<RecordInput<TRecordKey, TRecordValue>, TOutput> & {
-  schema: 'record';
+  schema: "record";
   record: { key: TRecordKey; value: TRecordValue };
 };
 
@@ -115,7 +115,7 @@ export function recordAsync<
 ): RecordSchemaAsync<TRecordValue, TRecordKey> {
   // Get key, value, error and pipe argument
   const { key, value, error, pipe } = (
-    typeof arg2 === 'object' && !Array.isArray(arg2)
+    typeof arg2 === "object" && !Array.isArray(arg2)
       ? { key: arg1, value: arg2, ...getErrorAndPipe(arg3, arg4) }
       : { key: string(), value: arg1, ...getErrorAndPipe(arg2, arg3 as any) }
   ) as {
@@ -130,7 +130,7 @@ export function recordAsync<
     /**
      * The schema type.
      */
-    schema: 'record',
+    schema: "record",
 
     /**
      * The record key and value schema.
@@ -152,17 +152,14 @@ export function recordAsync<
      */
     async _parse(input, info) {
       // Check type of input
-      if (
-        !input ||
-        typeof input !== 'object' ||
-        input.toString() !== '[object Object]'
-      ) {
+       {
+      if (!input || typeof input !== "object" || Array.isArray(input)) {
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'record',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "record",
+              message: error || "Invalid type, expected record",
               input,
             }),
           ],
@@ -187,7 +184,7 @@ export function recordAsync<
 
             // Get current path
             const path = getPath(info?.path, {
-              schema: 'record',
+              schema: "record",
               input,
               key: inputKey,
               value: inputValue,
@@ -196,7 +193,7 @@ export function recordAsync<
             // Get parse result of key and value
             const [keyResult, valueResult] = await Promise.all(
               [
-                { schema: key, input: inputKey, origin: 'key' as const },
+                { schema: key, input: inputKey, origin: "key" as const },
                 { schema: value, input: inputValue },
               ].map(async ({ schema, input, origin }) => {
                 // If not aborted early, continue execution
@@ -247,7 +244,7 @@ export function recordAsync<
         : executePipeAsync(
             output as RecordOutput<TRecordKey, TRecordValue>,
             pipe,
-            getPipeInfo(info, 'record')
+            getPipeInfo(info, "record")
           );
     },
   };

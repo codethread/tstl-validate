@@ -1,5 +1,5 @@
-import type { Issues } from '../../error/index';
-import type { BaseSchema, BaseSchemaAsync, PipeAsync } from '../../types';
+import type { Issues } from "../../error/index";
+import type { BaseSchema, BaseSchemaAsync, PipeAsync } from "../../types";
 import {
   executePipeAsync,
   getErrorAndPipe,
@@ -7,8 +7,8 @@ import {
   getPath,
   getPathInfo,
   getPipeInfo,
-} from '../../utils/index';
-import type { TupleInput, TupleOutput } from './types';
+} from "../../utils/index";
+import type { TupleInput, TupleOutput } from "./types";
 
 /**
  * Tuple shape async type.
@@ -26,7 +26,7 @@ export type TupleSchemaAsync<
   TTupleRest extends BaseSchema | BaseSchemaAsync | undefined = undefined,
   TOutput = TupleOutput<TTupleItems, TTupleRest>
 > = BaseSchemaAsync<TupleInput<TTupleItems, TTupleRest>, TOutput> & {
-  schema: 'tuple';
+  schema: "tuple";
   tuple: { items: TTupleItems; rest: TTupleRest };
 };
 
@@ -113,7 +113,7 @@ export function tupleAsync<
 ): TupleSchemaAsync<TTupleItems, TTupleRest> {
   // Get rest, error and pipe argument
   const { rest, error, pipe } = (
-    typeof arg2 === 'object' && !Array.isArray(arg2)
+    typeof arg2 === "object" && !Array.isArray(arg2)
       ? { rest: arg2, ...getErrorAndPipe(arg3, arg4) }
       : getErrorAndPipe(arg2, arg3 as any)
   ) as {
@@ -127,7 +127,7 @@ export function tupleAsync<
     /**
      * The schema type.
      */
-    schema: 'tuple',
+    schema: "tuple",
 
     /**
      * The tuple items and rest schema.
@@ -157,9 +157,9 @@ export function tupleAsync<
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'tuple',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "tuple",
+              message: error || "Invalid type, expected tuple",
               input,
             }),
           ],
@@ -182,7 +182,7 @@ export function tupleAsync<
                 getPathInfo(
                   info,
                   getPath(info?.path, {
-                    schema: 'tuple',
+                    schema: "tuple",
                     input: input as [any, ...any[]],
                     key: index,
                     value,
@@ -228,7 +228,7 @@ export function tupleAsync<
                   getPathInfo(
                     info,
                     getPath(info?.path, {
-                      schema: 'tuple',
+                      schema: "tuple",
                       input: input as [any, ...any[]],
                       key: tupleIndex,
                       value,
@@ -269,7 +269,7 @@ export function tupleAsync<
         : executePipeAsync(
             output as TupleOutput<TTupleItems, TTupleRest>,
             pipe,
-            getPipeInfo(info, 'tuple')
+            getPipeInfo(info, "tuple")
           );
     },
   };

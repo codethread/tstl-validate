@@ -1,11 +1,11 @@
-import type { BaseSchemaAsync, PipeAsync } from '../../types';
+import type { BaseSchemaAsync, PipeAsync } from "../../types";
 import {
   executePipeAsync,
   getErrorAndPipe,
   getIssue,
   getPipeInfo,
-} from '../../utils/index';
-import { type Class } from './instance';
+} from "../../utils/index";
+import { type Class } from "./instance";
 
 /**
  * Instance schema type.
@@ -14,7 +14,7 @@ export type InstanceSchemaAsync<
   TClass extends Class,
   TOutput = InstanceType<TClass>
 > = BaseSchemaAsync<InstanceType<TClass>, TOutput> & {
-  schema: 'instance';
+  schema: "instance";
   class: TClass;
 };
 
@@ -59,7 +59,7 @@ export function instanceAsync<TClass extends Class>(
     /**
      * The schema type.
      */
-    schema: 'instance',
+    schema: "instance",
 
     /**
      * The class of the instance.
@@ -85,9 +85,9 @@ export function instanceAsync<TClass extends Class>(
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'instance',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "instance",
+              message: error || "Invalid type, expected instance",
               input,
             }),
           ],
@@ -95,7 +95,7 @@ export function instanceAsync<TClass extends Class>(
       }
 
       // Execute pipe and return result
-      return executePipeAsync(input, pipe, getPipeInfo(info, 'instance'));
+      return executePipeAsync(input, pipe, getPipeInfo(info, "instance"));
     },
   };
 }

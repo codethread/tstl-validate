@@ -1,10 +1,10 @@
-import type { BaseSchemaAsync, PipeAsync } from '../../types';
+import type { BaseSchemaAsync, PipeAsync } from "../../types";
 import {
   executePipeAsync,
   getErrorAndPipe,
   getIssue,
   getPipeInfo,
-} from '../../utils/index';
+} from "../../utils/index";
 
 /**
  * Special schema async type.
@@ -13,7 +13,7 @@ export type SpecialSchemaAsync<TInput, TOutput = TInput> = BaseSchemaAsync<
   TInput,
   TOutput
 > & {
-  schema: 'special';
+  schema: "special";
 };
 
 /**
@@ -57,7 +57,7 @@ export function specialAsync<TInput>(
     /**
      * The schema type.
      */
-    schema: 'special',
+    schema: "special",
 
     /**
      * Whether it's async.
@@ -78,9 +78,9 @@ export function specialAsync<TInput>(
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'special',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "special",
+              message: error || "Invalid type, expected special",
               input,
             }),
           ],
@@ -91,7 +91,7 @@ export function specialAsync<TInput>(
       return executePipeAsync(
         input as TInput,
         pipe,
-        getPipeInfo(info, 'special')
+        getPipeInfo(info, "special")
       );
     },
   };

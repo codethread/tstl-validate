@@ -1,10 +1,10 @@
-import type { BaseSchemaAsync, PipeAsync } from '../../types';
+import type { BaseSchemaAsync, PipeAsync } from "../../types";
 import {
   executePipeAsync,
   getErrorAndPipe,
   getIssue,
   getPipeInfo,
-} from '../../utils/index';
+} from "../../utils/index";
 
 /**
  * Number schema async type.
@@ -13,7 +13,7 @@ export type NumberSchemaAsync<TOutput = number> = BaseSchemaAsync<
   number,
   TOutput
 > & {
-  schema: 'number';
+  schema: "number";
 };
 
 /**
@@ -50,7 +50,7 @@ export function numberAsync(
     /**
      * The schema type.
      */
-    schema: 'number',
+    schema: "number",
 
     /**
      * Whether it's async.
@@ -67,13 +67,13 @@ export function numberAsync(
      */
     async _parse(input, info) {
       // Check type of input
-      if (typeof input !== 'number') {
+      if (typeof input !== "number") {
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'number',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "number",
+              message: error || "Invalid type, expected number",
               input,
             }),
           ],
@@ -81,7 +81,7 @@ export function numberAsync(
       }
 
       // Execute pipe and return result
-      return executePipeAsync(input, pipe, getPipeInfo(info, 'number'));
+      return executePipeAsync(input, pipe, getPipeInfo(info, "number"));
     },
   };
 }

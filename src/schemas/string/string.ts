@@ -1,16 +1,16 @@
-import type { BaseSchema, Pipe } from '../../types';
+import type { BaseSchema, Pipe } from "../../types";
 import {
   executePipe,
   getErrorAndPipe,
   getIssue,
   getPipeInfo,
-} from '../../utils/index';
+} from "../../utils/index";
 
 /**
  * String schema type.
  */
 export type StringSchema<TOutput = string> = BaseSchema<string, TOutput> & {
-  schema: 'string';
+  schema: "string";
 };
 
 /**
@@ -44,7 +44,7 @@ export function string(
     /**
      * The schema type.
      */
-    schema: 'string',
+    schema: "string",
 
     /**
      * Whether it's async.
@@ -61,13 +61,13 @@ export function string(
      */
     _parse(input, info) {
       // Check type of input
-      if (typeof input !== 'string') {
+      if (typeof input !== "string") {
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'string',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "string",
+              message: error || "Invalid type, expected string",
               input,
             }),
           ],
@@ -75,7 +75,7 @@ export function string(
       }
 
       // Execute pipe and return result
-      return executePipe(input, pipe, getPipeInfo(info, 'string'));
+      return executePipe(input, pipe, getPipeInfo(info, "string"));
     },
   };
 }

@@ -1,5 +1,5 @@
-import type { BaseSchema, Input, Output } from '../../types';
-import { getIssue } from '../../utils/index';
+import type { BaseSchema, Input, Output } from "../../types";
+import { getIssue } from "../../utils/index";
 
 /**
  * Non nullish type.
@@ -13,7 +13,7 @@ export type NonNullishSchema<
   TWrappedSchema extends BaseSchema,
   TOutput = NonNullish<Output<TWrappedSchema>>
 > = BaseSchema<NonNullish<Input<TWrappedSchema>>, TOutput> & {
-  schema: 'non_nullish';
+  schema: "non_nullish";
   wrapped: TWrappedSchema;
 };
 
@@ -33,7 +33,7 @@ export function nonNullish<TWrappedSchema extends BaseSchema>(
     /**
      * The schema type.
      */
-    schema: 'non_nullish',
+    schema: "non_nullish",
 
     /**
      * The wrapped schema.
@@ -59,9 +59,9 @@ export function nonNullish<TWrappedSchema extends BaseSchema>(
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'non_nullish',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "non_nullish",
+              message: error || "Invalid type, expected non_nullish",
               input,
             }),
           ],

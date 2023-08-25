@@ -1,11 +1,6 @@
-import type { Issues } from '../../error/index';
-import type {
-  BaseSchema,
-  BaseSchemaAsync,
-  Input,
-  Output,
-} from '../../types';
-import { getIssue } from '../../utils/index';
+import type { Issues } from "../../error/index";
+import type { BaseSchema, BaseSchemaAsync, Input, Output } from "../../types";
+import { getIssue } from "../../utils/index";
 
 /**
  * Union options async type.
@@ -23,7 +18,7 @@ export type UnionSchemaAsync<
   TUnionOptions extends UnionOptionsAsync,
   TOutput = Output<TUnionOptions[number]>
 > = BaseSchemaAsync<Input<TUnionOptions[number]>, TOutput> & {
-  schema: 'union';
+  schema: "union";
   union: TUnionOptions;
 };
 
@@ -43,7 +38,7 @@ export function unionAsync<TUnionOptions extends UnionOptionsAsync>(
     /**
      * The schema type.
      */
-    schema: 'union',
+    schema: "union",
 
     /**
      * The union schema.
@@ -97,9 +92,9 @@ export function unionAsync<TUnionOptions extends UnionOptionsAsync>(
         : {
             issues: [
               getIssue(info, {
-                reason: 'type',
-                validation: 'union',
-                message: error || 'Invalid type',
+                reason: "type",
+                validation: "union",
+                message: error || "Invalid type, expected union",
                 input,
                 issues,
               }),

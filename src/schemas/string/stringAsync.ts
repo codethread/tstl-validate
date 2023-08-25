@@ -1,10 +1,10 @@
-import type { BaseSchemaAsync, PipeAsync } from '../../types';
+import type { BaseSchemaAsync, PipeAsync } from "../../types";
 import {
   executePipeAsync,
   getErrorAndPipe,
   getIssue,
   getPipeInfo,
-} from '../../utils/index';
+} from "../../utils/index";
 
 /**
  * String schema async type.
@@ -13,7 +13,7 @@ export type StringSchemaAsync<TOutput = string> = BaseSchemaAsync<
   string,
   TOutput
 > & {
-  schema: 'string';
+  schema: "string";
 };
 
 /**
@@ -50,7 +50,7 @@ export function stringAsync(
     /**
      * The schema type.
      */
-    schema: 'string',
+    schema: "string",
 
     /**
      * Whether it's async.
@@ -67,13 +67,13 @@ export function stringAsync(
      */
     async _parse(input, info) {
       // Check type of input
-      if (typeof input !== 'string') {
+      if (typeof input !== "string") {
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'string',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "string",
+              message: error || "Invalid type, expected string",
               input,
             }),
           ],
@@ -81,7 +81,7 @@ export function stringAsync(
       }
 
       // Execute pipe and return result
-      return executePipeAsync(input, pipe, getPipeInfo(info, 'string'));
+      return executePipeAsync(input, pipe, getPipeInfo(info, "string"));
     },
   };
 }

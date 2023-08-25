@@ -1,11 +1,11 @@
-import type { Issues } from '../../error/index';
+import type { Issues } from "../../error/index";
 import type {
   BaseSchema,
   BaseSchemaAsync,
   Input,
   Output,
   PipeAsync,
-} from '../../types';
+} from "../../types";
 import {
   executePipeAsync,
   getErrorAndPipe,
@@ -13,7 +13,7 @@ import {
   getPath,
   getPathInfo,
   getPipeInfo,
-} from '../../utils/index';
+} from "../../utils/index";
 
 /**
  * Array schema async type.
@@ -22,7 +22,7 @@ export type ArraySchemaAsync<
   TArrayItem extends BaseSchema | BaseSchemaAsync,
   TOutput = Output<TArrayItem>[]
 > = BaseSchemaAsync<Input<TArrayItem>[], TOutput> & {
-  schema: 'array';
+  schema: "array";
   array: { item: TArrayItem };
 };
 
@@ -67,7 +67,7 @@ export function arrayAsync<TArrayItem extends BaseSchema | BaseSchemaAsync>(
     /**
      * The schema type.
      */
-    schema: 'array',
+    schema: "array",
 
     /**
      * The array item schema.
@@ -93,9 +93,9 @@ export function arrayAsync<TArrayItem extends BaseSchema | BaseSchemaAsync>(
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'array',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "array",
+              message: error || "Invalid type, expected array",
               input,
             }),
           ],
@@ -117,7 +117,7 @@ export function arrayAsync<TArrayItem extends BaseSchema | BaseSchemaAsync>(
               getPathInfo(
                 info,
                 getPath(info?.path, {
-                  schema: 'array',
+                  schema: "array",
                   input: input,
                   key,
                   value,
@@ -157,7 +157,7 @@ export function arrayAsync<TArrayItem extends BaseSchema | BaseSchemaAsync>(
         : executePipeAsync(
             output as Output<TArrayItem>[],
             pipe,
-            getPipeInfo(info, 'array')
+            getPipeInfo(info, "array")
           );
     },
   };

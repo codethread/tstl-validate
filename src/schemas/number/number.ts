@@ -1,16 +1,16 @@
-import type { BaseSchema, Pipe } from '../../types';
+import type { BaseSchema, Pipe } from "../../types";
 import {
   executePipe,
   getErrorAndPipe,
   getIssue,
   getPipeInfo,
-} from '../../utils/index';
+} from "../../utils/index";
 
 /**
  * Number schema type.
  */
 export type NumberSchema<TOutput = number> = BaseSchema<number, TOutput> & {
-  schema: 'number';
+  schema: "number";
 };
 
 /**
@@ -44,7 +44,7 @@ export function number(
     /**
      * The schema type.
      */
-    schema: 'number',
+    schema: "number",
 
     /**
      * Whether it's async.
@@ -61,13 +61,13 @@ export function number(
      */
     _parse(input, info) {
       // Check type of input
-      if (typeof input !== 'number') {
+      if (typeof input !== "number") {
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'number',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "number",
+              message: error || "Invalid type, expected number",
               input,
             }),
           ],
@@ -75,7 +75,7 @@ export function number(
       }
 
       // Execute pipe and return result
-      return executePipe(input, pipe, getPipeInfo(info, 'number'));
+      return executePipe(input, pipe, getPipeInfo(info, "number"));
     },
   };
 }

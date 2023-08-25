@@ -1,10 +1,10 @@
-import type { BaseSchemaAsync, PipeAsync } from '../../types';
+import type { BaseSchemaAsync, PipeAsync } from "../../types";
 import {
   executePipeAsync,
   getErrorAndPipe,
   getIssue,
   getPipeInfo,
-} from '../../utils/index';
+} from "../../utils/index";
 
 /**
  * Boolean schema async type.
@@ -13,7 +13,7 @@ export type BooleanSchemaAsync<TOutput = boolean> = BaseSchemaAsync<
   boolean,
   TOutput
 > & {
-  schema: 'boolean';
+  schema: "boolean";
 };
 
 /**
@@ -50,7 +50,7 @@ export function booleanAsync(
     /**
      * The schema type.
      */
-    schema: 'boolean',
+    schema: "boolean",
 
     /**
      * Whether it's async.
@@ -67,13 +67,13 @@ export function booleanAsync(
      */
     async _parse(input, info) {
       // Check type of input
-      if (typeof input !== 'boolean') {
+      if (typeof input !== "boolean") {
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'boolean',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "boolean",
+              message: error || "Invalid type, expected boolean",
               input,
             }),
           ],
@@ -81,7 +81,7 @@ export function booleanAsync(
       }
 
       // Execute pipe and return result
-      return executePipeAsync(input, pipe, getPipeInfo(info, 'boolean'));
+      return executePipeAsync(input, pipe, getPipeInfo(info, "boolean"));
     },
   };
 }

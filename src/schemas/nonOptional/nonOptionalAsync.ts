@@ -1,11 +1,6 @@
-import type {
-  BaseSchema,
-  BaseSchemaAsync,
-  Input,
-  Output,
-} from '../../types';
-import { getIssue } from '../../utils/index';
-import type { NonOptional } from './nonOptional';
+import type { BaseSchema, BaseSchemaAsync, Input, Output } from "../../types";
+import { getIssue } from "../../utils/index";
+import type { NonOptional } from "./nonOptional";
 
 /**
  * Non optional schema async type.
@@ -14,7 +9,7 @@ export type NonOptionalSchemaAsync<
   TWrappedSchema extends BaseSchema | BaseSchemaAsync,
   TOutput = NonOptional<Output<TWrappedSchema>>
 > = BaseSchemaAsync<NonOptional<Input<TWrappedSchema>>, TOutput> & {
-  schema: 'non_optional';
+  schema: "non_optional";
   wrapped: TWrappedSchema;
 };
 
@@ -36,7 +31,7 @@ export function nonOptionalAsync<
     /**
      * The schema type.
      */
-    schema: 'non_optional',
+    schema: "non_optional",
 
     /**
      * The wrapped schema.
@@ -62,9 +57,9 @@ export function nonOptionalAsync<
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'non_optional',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "non_optional",
+              message: error || "Invalid type, expected non_optional",
               input,
             }),
           ],

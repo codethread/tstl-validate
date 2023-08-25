@@ -1,5 +1,5 @@
-import type { BaseSchema, Input, Output } from '../../types';
-import { getIssue } from '../../utils/index';
+import type { BaseSchema, Input, Output } from "../../types";
+import { getIssue } from "../../utils/index";
 
 /**
  * Non optional type.
@@ -13,7 +13,7 @@ export type NonOptionalSchema<
   TWrappedSchema extends BaseSchema,
   TOutput = NonOptional<Output<TWrappedSchema>>
 > = BaseSchema<NonOptional<Input<TWrappedSchema>>, TOutput> & {
-  schema: 'non_optional';
+  schema: "non_optional";
   wrapped: TWrappedSchema;
 };
 
@@ -33,7 +33,7 @@ export function nonOptional<TWrappedSchema extends BaseSchema>(
     /**
      * The schema type.
      */
-    schema: 'non_optional',
+    schema: "non_optional",
 
     /**
      * The wrapped schema.
@@ -59,9 +59,9 @@ export function nonOptional<TWrappedSchema extends BaseSchema>(
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'non_optional',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "non_optional",
+              message: error || "Invalid type, expected non_optional",
               input,
             }),
           ],

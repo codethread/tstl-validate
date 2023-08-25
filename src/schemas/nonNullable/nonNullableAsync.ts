@@ -1,11 +1,6 @@
-import type {
-  BaseSchema,
-  BaseSchemaAsync,
-  Input,
-  Output,
-} from '../../types';
-import { getIssue } from '../../utils/index';
-import type { NonNullable } from './nonNullable';
+import type { BaseSchema, BaseSchemaAsync, Input, Output } from "../../types";
+import { getIssue } from "../../utils/index";
+import type { NonNullable } from "./nonNullable";
 
 /**
  * Non nullable schema async type.
@@ -14,7 +9,7 @@ export type NonNullableSchemaAsync<
   TWrappedSchema extends BaseSchema | BaseSchemaAsync,
   TOutput = NonNullable<Output<TWrappedSchema>>
 > = BaseSchemaAsync<NonNullable<Input<TWrappedSchema>>, TOutput> & {
-  schema: 'non_nullable';
+  schema: "non_nullable";
   wrapped: TWrappedSchema;
 };
 
@@ -36,7 +31,7 @@ export function nonNullableAsync<
     /**
      * The schema type.
      */
-    schema: 'non_nullable',
+    schema: "non_nullable",
 
     /**
      * The wrapped schema.
@@ -62,9 +57,9 @@ export function nonNullableAsync<
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'non_nullable',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "non_nullable",
+              message: error || "Invalid type, expected non_nullable",
               input,
             }),
           ],

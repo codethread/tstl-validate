@@ -1,6 +1,6 @@
-import type { Issues } from '../../error/index';
-import type { BaseSchema, Input, Output } from '../../types';
-import { getIssue } from '../../utils/index';
+import type { Issues } from "../../error/index";
+import type { BaseSchema, Input, Output } from "../../types";
+import { getIssue } from "../../utils/index";
 
 /**
  * Union options type.
@@ -18,7 +18,7 @@ export type UnionSchema<
   TUnionOptions extends UnionOptions,
   TOutput = Output<TUnionOptions[number]>
 > = BaseSchema<Input<TUnionOptions[number]>, TOutput> & {
-  schema: 'union';
+  schema: "union";
   union: TUnionOptions;
 };
 
@@ -38,7 +38,7 @@ export function union<TUnionOptions extends UnionOptions>(
     /**
      * The schema type.
      */
-    schema: 'union',
+    schema: "union",
 
     /**
      * The union schema.
@@ -92,9 +92,9 @@ export function union<TUnionOptions extends UnionOptions>(
         : {
             issues: [
               getIssue(info, {
-                reason: 'type',
-                validation: 'union',
-                message: error || 'Invalid type',
+                reason: "type",
+                validation: "union",
+                message: error || "Invalid type, expected union",
                 input,
                 issues,
               }),

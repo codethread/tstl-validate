@@ -1,6 +1,6 @@
-import type { BaseSchema } from '../../types';
-import { getIssue } from '../../utils/index';
-import type { Enum } from './types';
+import type { BaseSchema } from "../../types";
+import { getIssue } from "../../utils/index";
+import type { Enum } from "./types";
 
 /**
  * Enum schema type.
@@ -9,7 +9,7 @@ export type EnumSchema<
   TEnum extends Enum,
   TOutput = TEnum[number]
 > = BaseSchema<TEnum[number], TOutput> & {
-  schema: 'enum';
+  schema: "enum";
   enum: TEnum;
 };
 
@@ -29,7 +29,7 @@ export function enumType<TOption extends string, TEnum extends Enum<TOption>>(
     /**
      * The schema type.
      */
-    schema: 'enum',
+    schema: "enum",
 
     /**
      * The enum value.
@@ -55,9 +55,11 @@ export function enumType<TOption extends string, TEnum extends Enum<TOption>>(
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'enum',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "enum",
+              message:
+                error ||
+                `Invalid type, expected one of ${enumValue.join(", ")}`,
               input,
             }),
           ],

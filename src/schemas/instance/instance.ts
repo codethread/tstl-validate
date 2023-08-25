@@ -1,10 +1,10 @@
-import type { BaseSchema, Pipe } from '../../types';
+import type { BaseSchema, Pipe } from "../../types";
 import {
   executePipe,
   getErrorAndPipe,
   getIssue,
   getPipeInfo,
-} from '../../utils/index';
+} from "../../utils/index";
 
 /**
  * Class enum type.
@@ -18,7 +18,7 @@ export type InstanceSchema<
   TClass extends Class,
   TOutput = InstanceType<TClass>
 > = BaseSchema<InstanceType<TClass>, TOutput> & {
-  schema: 'instance';
+  schema: "instance";
   class: TClass;
 };
 
@@ -63,7 +63,7 @@ export function instance<TClass extends Class>(
     /**
      * The schema type.
      */
-    schema: 'instance',
+    schema: "instance",
 
     /**
      * The class of the instance.
@@ -89,9 +89,9 @@ export function instance<TClass extends Class>(
         return {
           issues: [
             getIssue(info, {
-              reason: 'type',
-              validation: 'instance',
-              message: error || 'Invalid type',
+              reason: "type",
+              validation: "instance",
+              message: error || "Invalid type, expected instance",
               input,
             }),
           ],
@@ -99,7 +99,7 @@ export function instance<TClass extends Class>(
       }
 
       // Execute pipe and return result
-      return executePipe(input, pipe, getPipeInfo(info, 'instance'));
+      return executePipe(input, pipe, getPipeInfo(info, "instance"));
     },
   };
 }

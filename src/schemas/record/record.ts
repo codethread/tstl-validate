@@ -146,17 +146,13 @@ export function record<
      */
     _parse(input, info) {
       // Check type of input
-      if (
-        !input ||
-        typeof input !== "object" ||
-        input.toString() !== "[object Object]"
-      ) {
+      if (!input || typeof input !== "object" || Array.isArray(input)) {
         return {
           issues: [
             getIssue(info, {
               reason: "type",
               validation: "record",
-              message: error || "Invalid type",
+              message: error || "Invalid type, expected record",
               input,
             }),
           ],
