@@ -1,6 +1,6 @@
 {
   "name": "@codethread/tstl-validate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Fork and adaptation of valibot for use in typescript-to-lua",
   "main": "./dist/index",
   "types": "dist/index.d.ts",
