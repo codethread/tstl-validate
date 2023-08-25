@@ -1,5 +1,5 @@
-import type { ParseResult, ValidateInfo } from '../../types';
-import { getIssue } from '../../utils/index';
+import type { ParseResult, ValidateInfo } from "../../types";
+import { getIssue } from "../../utils/index";
 
 /**
  * Creates a validation functions that validates the value of a string, number or date.
@@ -10,7 +10,7 @@ import { getIssue } from '../../utils/index';
  * @returns A validation function.
  */
 export function minValue<
-  TInput extends string | number | bigint | Date,
+  TInput extends string | number,
   TRequirement extends TInput
 >(requirement: TRequirement, error?: string) {
   return (input: TInput, info: ValidateInfo): ParseResult<TInput> => {
@@ -18,8 +18,9 @@ export function minValue<
       return {
         issues: [
           getIssue(info, {
-            validation: 'min_value',
-            message: error || 'Invalid value',
+            validation: "min_value",
+            message:
+              error || `Invalid value, expected more than ${requirement}`,
             input,
           }),
         ],
@@ -28,10 +29,3 @@ export function minValue<
     return { output: input };
   };
 }
-
-/**
- * See {@link minValue}
- *
- * @deprecated Function has been renamed to `minValue`.
- */
-export const minRange = minValue;

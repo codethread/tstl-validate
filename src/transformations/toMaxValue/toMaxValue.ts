@@ -1,4 +1,4 @@
-import type { ParseResult } from '../../types';
+import type { ParseResult } from "../../types";
 
 /**
  * Creates a transformation function that sets a string, number or date to a
@@ -9,7 +9,7 @@ import type { ParseResult } from '../../types';
  * @returns A transformation function.
  */
 export function toMaxValue<
-  TInput extends string | number | bigint | Date,
+  TInput extends string | number,
   TRequirement extends TInput
 >(requirement: TRequirement) {
   return (input: TInput): ParseResult<TInput> => ({

@@ -1,5 +1,5 @@
-import type { ParseResult, ValidateInfo } from '../../types';
-import { getIssue } from '../../utils/index';
+import type { ParseResult, ValidateInfo } from "../../types";
+import { getIssue } from "../../utils/index";
 
 /**
  * Creates a validation function that checks the value for equality.
@@ -10,7 +10,7 @@ import { getIssue } from '../../utils/index';
  * @returns A validation function.
  */
 export function equal<
-  TInput extends string | number | bigint | boolean,
+  TInput extends string | number | boolean,
   TRequirement extends TInput
 >(requirement: TRequirement, error?: string) {
   return (input: TInput, info: ValidateInfo): ParseResult<TInput> => {
@@ -18,8 +18,8 @@ export function equal<
       return {
         issues: [
           getIssue(info, {
-            validation: 'equal',
-            message: error || 'Invalid input',
+            validation: "equal",
+            message: error || "Invalid input",
             input,
           }),
         ],

@@ -1,31 +1,26 @@
-import type { PathItem } from '../../types';
+import type { PathItem } from "../../types";
 
 /**
  * Issue reason type.
  */
 export type IssueReason =
-  | 'type'
-  | 'string'
-  | 'number'
-  | 'bigint'
-  | 'blob'
-  | 'boolean'
-  | 'any'
-  | 'unknown'
-  | 'date'
-  | 'array'
-  | 'tuple'
-  | 'map'
-  | 'object'
-  | 'record'
-  | 'set'
-  | 'special'
-  | 'instance';
+  | "type"
+  | "string"
+  | "number"
+  | "boolean"
+  | "any"
+  | "unknown"
+  | "array"
+  | "tuple"
+  | "object"
+  | "record"
+  | "special"
+  | "instance";
 
 /**
  * Issue origin type.
  */
-export type IssueOrigin = 'key' | 'value';
+export type IssueOrigin = "key" | "value";
 
 /**
  * Issue type.
@@ -60,7 +55,7 @@ export class ValiError extends Error {
    */
   constructor(issues: Issues) {
     super(issues[0].message);
-    this.name = 'ValiError';
+    this.name = "ValiError";
     this.issues = issues;
   }
 }

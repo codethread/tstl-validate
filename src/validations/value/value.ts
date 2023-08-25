@@ -1,5 +1,5 @@
-import type { ParseResult, ValidateInfo } from '../../types';
-import { getIssue } from '../../utils/index';
+import type { ParseResult, ValidateInfo } from "../../types";
+import { getIssue } from "../../utils/index";
 
 /**
  * Creates a validation functions that validates the value of a string or number.
@@ -10,7 +10,7 @@ import { getIssue } from '../../utils/index';
  * @returns A validation function.
  */
 export function value<
-  TInput extends string | number | bigint,
+  TInput extends string | number,
   TRequirement extends TInput
 >(requirement: TRequirement, error?: string) {
   return (input: TInput, info: ValidateInfo): ParseResult<TInput> => {
@@ -18,8 +18,8 @@ export function value<
       return {
         issues: [
           getIssue(info, {
-            validation: 'value',
-            message: error || 'Invalid value',
+            validation: "value",
+            message: error || "Invalid value",
             input,
           }),
         ],

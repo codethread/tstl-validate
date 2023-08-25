@@ -1,5 +1,5 @@
-import type { ParseResult, ValidateInfo } from '../../types';
-import { getIssue } from '../../utils/index';
+import type { ParseResult, ValidateInfo } from "../../types";
+import { getIssue } from "../../utils/index";
 
 export function includes<TInput extends string>(
   requirement: string,
@@ -28,8 +28,12 @@ export function includes<TInput extends string | TItem[], TItem>(
       return {
         issues: [
           getIssue(info, {
-            validation: 'includes',
-            message: error || 'Invalid content',
+            validation: "includes",
+            message:
+              error ||
+              `Invalid content, expected to include one of ${
+                Array.isArray(requirement) ? requirement.join(",") : requirement
+              }`,
             input,
           }),
         ],

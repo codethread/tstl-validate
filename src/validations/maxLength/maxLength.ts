@@ -1,5 +1,5 @@
-import type { ParseResult, ValidateInfo } from '../../types';
-import { getIssue } from '../../utils/index';
+import type { ParseResult, ValidateInfo } from "../../types";
+import { getIssue } from "../../utils/index";
 
 /**
  * Creates a validation functions that validates the length of a string or array.
@@ -18,8 +18,9 @@ export function maxLength<TInput extends string | any[]>(
       return {
         issues: [
           getIssue(info, {
-            validation: 'max_length',
-            message: error || 'Invalid length',
+            validation: "max_length",
+            message:
+              error || `Invalid length, expected less than ${requirement}`,
             input,
           }),
         ],
