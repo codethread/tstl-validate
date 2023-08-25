@@ -1,24 +1,22 @@
-import type { Issue, Issues } from './error/index';
+import type { Issue, Issues } from "./error/index";
 import type {
   ArrayPathItem,
-  MapPathItem,
   ObjectPathItem,
   RecordPathItem,
-  SetPathItem,
   TuplePathItem,
-} from './schemas/index';
+} from "./schemas/index";
 
 /**
  * Parse info type.
  */
 export type ParseInfo = Partial<
-  Pick<Issue, 'origin' | 'path' | 'abortEarly' | 'abortPipeEarly'>
+  Pick<Issue, "origin" | "path" | "abortEarly" | "abortPipeEarly">
 >;
 
 /**
  * Validate info type.
  */
-export type ValidateInfo = ParseInfo & Pick<Issue, 'reason'>;
+export type ValidateInfo = ParseInfo & Pick<Issue, "reason">;
 
 /**
  * Path item type.
@@ -27,8 +25,6 @@ export type PathItem =
   | ObjectPathItem
   | RecordPathItem
   | TuplePathItem
-  | MapPathItem
-  | SetPathItem
   | ArrayPathItem;
 
 /**
@@ -60,15 +56,15 @@ export type BaseSchemaAsync<TInput = any, TOutput = TInput> = {
  * Input inference type.
  */
 export type Input<TSchema extends BaseSchema | BaseSchemaAsync> = NonNullable<
-  TSchema['types']
->['input'];
+  TSchema["types"]
+>["input"];
 
 /**
  * Output inference type.
  */
 export type Output<TSchema extends BaseSchema | BaseSchemaAsync> = NonNullable<
-  TSchema['types']
->['output'];
+  TSchema["types"]
+>["output"];
 
 /**
  * Validation and transformation pipe type.

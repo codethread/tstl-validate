@@ -3,30 +3,18 @@ import type {
   AnySchemaAsync,
   ArraySchema,
   ArraySchemaAsync,
-  BigintSchema,
-  BigintSchemaAsync,
   BooleanSchema,
   BooleanSchemaAsync,
   EnumSchema,
   EnumSchemaAsync,
   LiteralSchema,
   LiteralSchemaAsync,
-  MapSchema,
-  MapSchemaAsync,
-  NanSchema,
-  NanSchemaAsync,
-  NativeEnumSchema,
-  NativeEnumSchemaAsync,
-  NeverSchema,
-  NeverSchemaAsync,
   NonNullableSchema,
   NonNullableSchemaAsync,
   NonNullishSchema,
   NonNullishSchemaAsync,
   NonOptionalSchema,
   NonOptionalSchemaAsync,
-  NullSchema,
-  NullSchemaAsync,
   NullableSchema,
   NullableSchemaAsync,
   NullishSchema,
@@ -41,24 +29,14 @@ import type {
   RecordSchemaAsync,
   RecursiveSchema,
   RecursiveSchemaAsync,
-  SetSchema,
-  SetSchemaAsync,
   SpecialSchema,
   SpecialSchemaAsync,
   StringSchema,
   StringSchemaAsync,
-  SymbolSchema,
-  SymbolSchemaAsync,
   TupleSchema,
   TupleSchemaAsync,
-  UndefinedSchema,
-  UndefinedSchemaAsync,
   UnionSchema,
   UnionSchemaAsync,
-  UnknownSchema,
-  UnknownSchemaAsync,
-  VoidSchema,
-  VoidSchemaAsync,
 } from "../../schemas/index";
 import type { BaseSchema, BaseSchemaAsync, Input, Output } from "../../types";
 
@@ -77,14 +55,6 @@ export function transformAsync<
   schema: TSchema,
   action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
 ): ArraySchemaAsync<TSchema["array"]["item"], TOutput>;
-
-export function transformAsync<
-  TSchema extends BigintSchema | BigintSchemaAsync,
-  TOutput
->(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
-): BigintSchemaAsync<TOutput>;
 
 export function transformAsync<
   TSchema extends BooleanSchema | BooleanSchemaAsync,
@@ -111,35 +81,6 @@ export function transformAsync<
 ): LiteralSchemaAsync<TSchema["literal"], TOutput>;
 
 export function transformAsync<
-  TSchema extends MapSchema<any, any> | MapSchemaAsync<any, any>,
-  TOutput
->(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
-): MapSchemaAsync<TSchema["map"]["key"], TSchema["map"]["value"], TOutput>;
-
-export function transformAsync<
-  TSchema extends NanSchema | NanSchemaAsync,
-  TOutput
->(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
-): NanSchemaAsync<TOutput>;
-
-export function transformAsync<
-  TSchema extends NativeEnumSchema<any> | NativeEnumSchemaAsync<any>,
-  TOutput
->(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
-): NativeEnumSchemaAsync<TSchema["nativeEnum"], TOutput>;
-
-export function transformAsync<TSchema extends NeverSchema | NeverSchemaAsync>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => never
-): NeverSchemaAsync;
-
-export function transformAsync<
   TSchema extends NonNullableSchema<any> | NonNullableSchemaAsync<any>,
   TOutput
 >(
@@ -162,14 +103,6 @@ export function transformAsync<
   schema: TSchema,
   action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
 ): NonOptionalSchemaAsync<TSchema["wrapped"], TOutput>;
-
-export function transformAsync<
-  TSchema extends NullSchema | NullSchemaAsync,
-  TOutput
->(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
-): NullSchemaAsync<TOutput>;
 
 export function transformAsync<
   TSchema extends NullableSchema<any> | NullableSchemaAsync<any>,
@@ -232,14 +165,6 @@ export function transformAsync<
 ): RecursiveSchemaAsync<TSchema["getter"], TOutput>;
 
 export function transformAsync<
-  TSchema extends SetSchema<any> | SetSchemaAsync<any>,
-  TOutput
->(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
-): SetSchemaAsync<TSchema["set"]["value"], TOutput>;
-
-export function transformAsync<
   TSchema extends SpecialSchema<any> | SpecialSchemaAsync<any>,
   TOutput
 >(
@@ -256,14 +181,6 @@ export function transformAsync<
 ): StringSchemaAsync<TOutput>;
 
 export function transformAsync<
-  TSchema extends SymbolSchema | SymbolSchemaAsync,
-  TOutput
->(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
-): SymbolSchemaAsync<TOutput>;
-
-export function transformAsync<
   TSchema extends TupleSchema<any, any> | TupleSchemaAsync<any, any>,
   TOutput
 >(
@@ -276,36 +193,12 @@ export function transformAsync<
 >;
 
 export function transformAsync<
-  TSchema extends UndefinedSchema | UndefinedSchemaAsync,
-  TOutput
->(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
-): UndefinedSchemaAsync<TOutput>;
-
-export function transformAsync<
   TSchema extends UnionSchema<any> | UnionSchemaAsync<any>,
   TOutput
 >(
   schema: TSchema,
   action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
 ): UnionSchemaAsync<TSchema["union"], TOutput>;
-
-export function transformAsync<
-  TSchema extends UnknownSchema | UnknownSchemaAsync,
-  TOutput
->(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
-): UnknownSchemaAsync<TOutput>;
-
-export function transformAsync<
-  TSchema extends VoidSchema | VoidSchemaAsync,
-  TOutput
->(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput | Promise<TOutput>
-): VoidSchemaAsync<TOutput>;
 
 /**
  * Adds an async transformation step to a schema, which is executed at the end

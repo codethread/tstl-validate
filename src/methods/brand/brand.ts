@@ -3,8 +3,6 @@ import type {
   AnySchemaAsync,
   ArraySchema,
   ArraySchemaAsync,
-  BigintSchema,
-  BigintSchemaAsync,
   BooleanSchema,
   BooleanSchemaAsync,
   EnumSchema,
@@ -13,22 +11,12 @@ import type {
   InstanceSchemaAsync,
   LiteralSchema,
   LiteralSchemaAsync,
-  MapSchema,
-  MapSchemaAsync,
-  NanSchema,
-  NanSchemaAsync,
-  NativeEnumSchema,
-  NativeEnumSchemaAsync,
-  NeverSchema,
-  NeverSchemaAsync,
   NonNullableSchema,
   NonNullableSchemaAsync,
   NonNullishSchema,
   NonNullishSchemaAsync,
   NonOptionalSchema,
   NonOptionalSchemaAsync,
-  NullSchema,
-  NullSchemaAsync,
   NullableSchema,
   NullableSchemaAsync,
   NullishSchema,
@@ -43,24 +31,14 @@ import type {
   RecordSchemaAsync,
   RecursiveSchema,
   RecursiveSchemaAsync,
-  SetSchema,
-  SetSchemaAsync,
   SpecialSchema,
   SpecialSchemaAsync,
   StringSchema,
   StringSchemaAsync,
-  SymbolSchema,
-  SymbolSchemaAsync,
   TupleSchema,
   TupleSchemaAsync,
-  UndefinedSchema,
-  UndefinedSchemaAsync,
   UnionSchema,
   UnionSchemaAsync,
-  UnknownSchema,
-  UnknownSchemaAsync,
-  VoidSchema,
-  VoidSchemaAsync,
 } from '../../schemas/index';
 import type {
   BaseSchema,
@@ -114,22 +92,6 @@ export function brand<
   TSchema['array']['item'],
   Output<TSchema> & Brand<TBrandName>
 >;
-
-export function brand<
-  TSchema extends BigintSchema,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): BigintSchema<Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
-  TSchema extends BigintSchemaAsync,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): BigintSchemaAsync<Output<TSchema> & Brand<TBrandName>>;
 
 export function brand<
   TSchema extends BooleanSchema,
@@ -196,72 +158,6 @@ export function brand<
 ): LiteralSchemaAsync<TSchema['literal'], Output<TSchema> & Brand<TBrandName>>;
 
 export function brand<
-  TSchema extends MapSchema<any, any>,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): MapSchema<
-  TSchema['map']['key'],
-  TSchema['map']['value'],
-  Output<TSchema> & Brand<TBrandName>
->;
-
-export function brand<
-  TSchema extends MapSchemaAsync<any, any>,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): MapSchemaAsync<
-  TSchema['map']['key'],
-  TSchema['map']['value'],
-  Output<TSchema> & Brand<TBrandName>
->;
-
-export function brand<TSchema extends NanSchema, TBrandName extends BrandName>(
-  schema: TSchema,
-  name: TBrandName
-): NanSchema<Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
-  TSchema extends NanSchemaAsync,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): NanSchemaAsync<Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
-  TSchema extends NativeEnumSchema<any>,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): NativeEnumSchema<TSchema['nativeEnum'], Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
-  TSchema extends NativeEnumSchemaAsync<any>,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): NativeEnumSchemaAsync<
-  TSchema['nativeEnum'],
-  Output<TSchema> & Brand<TBrandName>
->;
-
-export function brand<TSchema extends NeverSchema>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => never
-): NeverSchema;
-
-export function brand<TSchema extends NeverSchemaAsync>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => never
-): NeverSchemaAsync;
-
-export function brand<
   TSchema extends NonNullableSchema<any>,
   TBrandName extends BrandName
 >(
@@ -317,19 +213,6 @@ export function brand<
   TSchema['wrapped'],
   Output<TSchema> & Brand<TBrandName>
 >;
-
-export function brand<TSchema extends NullSchema, TBrandName extends BrandName>(
-  schema: TSchema,
-  name: TBrandName
-): NullSchema<Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
-  TSchema extends NullSchemaAsync,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): NullSchemaAsync<Output<TSchema> & Brand<TBrandName>>;
 
 export function brand<
   TSchema extends NullableSchema<any>,
@@ -452,22 +335,6 @@ export function brand<
 ): RecursiveSchemaAsync<TSchema['getter'], Output<TSchema> & Brand<TBrandName>>;
 
 export function brand<
-  TSchema extends SetSchema<any>,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): SetSchema<TSchema['set']['value'], Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
-  TSchema extends SetSchemaAsync<any>,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): SetSchemaAsync<TSchema['set']['value'], Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
   TSchema extends SpecialSchema<any>,
   TBrandName extends BrandName
 >(
@@ -500,22 +367,6 @@ export function brand<
 ): StringSchemaAsync<Output<TSchema> & Brand<TBrandName>>;
 
 export function brand<
-  TSchema extends SymbolSchema,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): SymbolSchema<Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
-  TSchema extends SymbolSchemaAsync,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): SymbolSchemaAsync<Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
   TSchema extends TupleSchema<any, any>,
   TBrandName extends BrandName
 >(
@@ -540,22 +391,6 @@ export function brand<
 >;
 
 export function brand<
-  TSchema extends UndefinedSchema,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): UndefinedSchema<Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
-  TSchema extends UndefinedSchemaAsync,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): UndefinedSchemaAsync<Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
   TSchema extends UnionSchema<any>,
   TBrandName extends BrandName
 >(
@@ -571,34 +406,6 @@ export function brand<
   name: TBrandName
 ): UnionSchemaAsync<TSchema['union'], Output<TSchema> & Brand<TBrandName>>;
 
-export function brand<
-  TSchema extends UnknownSchema,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): UnknownSchema<Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
-  TSchema extends UnknownSchemaAsync,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): UnknownSchemaAsync<Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<TSchema extends VoidSchema, TBrandName extends BrandName>(
-  schema: TSchema,
-  name: TBrandName
-): VoidSchema<Output<TSchema> & Brand<TBrandName>>;
-
-export function brand<
-  TSchema extends VoidSchemaAsync,
-  TBrandName extends BrandName
->(
-  schema: TSchema,
-  name: TBrandName
-): VoidSchemaAsync<Output<TSchema> & Brand<TBrandName>>;
 
 /**
  * Brands the output type of a schema.

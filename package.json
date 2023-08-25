@@ -11,7 +11,8 @@
   "scripts": {
     "------------main stuff--": "",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tstl && rm ./dist/lualib_bundle.lua",
+    "clean": "rm -rf dist",
+    "build": "yarn clean && tstl && rm ./dist/lualib_bundle.lua",
     "------------publish--": "",
     "pub": "npm publish --dry-run",
     "pub-real": "npm publish",

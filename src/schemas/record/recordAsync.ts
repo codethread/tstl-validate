@@ -152,7 +152,6 @@ export function recordAsync<
      */
     async _parse(input, info) {
       // Check type of input
-       {
       if (!input || typeof input !== "object" || Array.isArray(input)) {
         return {
           issues: [

@@ -1,19 +1,12 @@
 import type {
   AnySchema,
   ArraySchema,
-  BigintSchema,
   BooleanSchema,
   EnumSchema,
   InstanceSchema,
   LiteralSchema,
-  MapSchema,
-  NanSchema,
-  NativeEnumSchema,
-  NeverSchema,
-  NonNullableSchema,
   NonNullishSchema,
   NonOptionalSchema,
-  NullSchema,
   NullableSchema,
   NullishSchema,
   NumberSchema,
@@ -21,15 +14,10 @@ import type {
   OptionalSchema,
   RecordSchema,
   RecursiveSchema,
-  SetSchema,
   SpecialSchema,
   StringSchema,
-  SymbolSchema,
   TupleSchema,
-  UndefinedSchema,
   UnionSchema,
-  UnknownSchema,
-  VoidSchema,
 } from "../../schemas/index";
 import type { BaseSchema, Input, Output } from "../../types";
 
@@ -42,11 +30,6 @@ export function transform<TSchema extends ArraySchema<any>, TOutput>(
   schema: TSchema,
   action: (value: Output<TSchema>) => TOutput
 ): ArraySchema<TSchema["array"]["item"], TOutput>;
-
-export function transform<TSchema extends BigintSchema, TOutput>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput
-): BigintSchema<TOutput>;
 
 export function transform<TSchema extends BooleanSchema, TOutput>(
   schema: TSchema,
@@ -68,31 +51,6 @@ export function transform<TSchema extends LiteralSchema<any>, TOutput>(
   action: (value: Output<TSchema>) => TOutput
 ): LiteralSchema<TSchema["literal"], TOutput>;
 
-export function transform<TSchema extends MapSchema<any, any>, TOutput>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput
-): MapSchema<TSchema["map"]["key"], TSchema["map"]["value"], TOutput>;
-
-export function transform<TSchema extends NanSchema, TOutput>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput
-): NanSchema<TOutput>;
-
-export function transform<TSchema extends NativeEnumSchema<any>, TOutput>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput
-): NativeEnumSchema<TSchema["nativeEnum"], TOutput>;
-
-export function transform<TSchema extends NeverSchema>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => never
-): NeverSchema;
-
-export function transform<TSchema extends NonNullableSchema<any>, TOutput>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput
-): NonNullableSchema<TSchema["wrapped"], TOutput>;
-
 export function transform<TSchema extends NonNullishSchema<any>, TOutput>(
   schema: TSchema,
   action: (value: Output<TSchema>) => TOutput
@@ -102,11 +60,6 @@ export function transform<TSchema extends NonOptionalSchema<any>, TOutput>(
   schema: TSchema,
   action: (value: Output<TSchema>) => TOutput
 ): NonOptionalSchema<TSchema["wrapped"], TOutput>;
-
-export function transform<TSchema extends NullSchema, TOutput>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput
-): NullSchema<TOutput>;
 
 export function transform<TSchema extends NullableSchema<any>, TOutput>(
   schema: TSchema,
@@ -143,11 +96,6 @@ export function transform<TSchema extends RecursiveSchema<any>, TOutput>(
   action: (value: Output<TSchema>) => TOutput
 ): RecursiveSchema<TSchema["getter"], TOutput>;
 
-export function transform<TSchema extends SetSchema<any>, TOutput>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput
-): SetSchema<TSchema["set"]["value"], TOutput>;
-
 export function transform<TSchema extends SpecialSchema<any>, TOutput>(
   schema: TSchema,
   action: (value: Output<TSchema>) => TOutput
@@ -158,35 +106,15 @@ export function transform<TSchema extends StringSchema, TOutput>(
   action: (value: Output<TSchema>) => TOutput
 ): StringSchema<TOutput>;
 
-export function transform<TSchema extends SymbolSchema, TOutput>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput
-): SymbolSchema<TOutput>;
-
 export function transform<TSchema extends TupleSchema<any, any>, TOutput>(
   schema: TSchema,
   action: (value: Output<TSchema>) => TOutput
 ): TupleSchema<TSchema["tuple"]["items"], TSchema["tuple"]["rest"], TOutput>;
 
-export function transform<TSchema extends UndefinedSchema, TOutput>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput
-): UndefinedSchema<TOutput>;
-
 export function transform<TSchema extends UnionSchema<any>, TOutput>(
   schema: TSchema,
   action: (value: Output<TSchema>) => TOutput
 ): UnionSchema<TSchema["union"], TOutput>;
-
-export function transform<TSchema extends UnknownSchema, TOutput>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput
-): UnknownSchema<TOutput>;
-
-export function transform<TSchema extends VoidSchema, TOutput>(
-  schema: TSchema,
-  action: (value: Output<TSchema>) => TOutput
-): VoidSchema<TOutput>;
 
 /**
  * Adds a transformation step to a schema, which is executed at the end of
