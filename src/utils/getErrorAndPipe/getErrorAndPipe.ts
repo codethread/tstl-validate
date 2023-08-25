@@ -12,7 +12,14 @@ export function getErrorAndPipe<TPipe extends Pipe<any> | PipeAsync<any>>(
   arg1?: string | TPipe,
   arg2?: TPipe
 ): { error: string | undefined; pipe: TPipe } {
-  const [error, pipe = [] as unknown as TPipe] =
-    !arg1 || typeof arg1 === "string" ? [arg1, arg2] : ["__TSTL_NULL", arg1];
-  return { error, pipe };
+  if (!arg1 || typeof arg1 === "string") {
+    const pipe = (arg2 || []) as TPipe;
+    return { error: arg1, pipe };
+  } else {
+    const pipe = (arg1 || []) as TPipe;
+    return { error: undefined, pipe };
+  }
+
+  // const [error, pipe = [] as unknown as TPipe] = !arg1 || typeof arg1 === "string" ? [arg1, arg2] : [-1, arg1];
+  // return { error, pipe };
 }
