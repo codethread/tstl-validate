@@ -1,5 +1,5 @@
-import type { ParseResult, ValidateInfo } from '../../types';
-import { getIssue } from '../../utils/index';
+import type { ParseResult, ValidateInfo } from "../../types";
+import { getIssue } from "../../utils/index";
 
 /**
  * Creates a validation functions that validates the end of a string.
@@ -18,8 +18,8 @@ export function endsWith<TInput extends string>(
       return {
         issues: [
           getIssue(info, {
-            validation: 'ends_with',
-            message: error || 'Invalid end',
+            validation: "ends_with",
+            message: error || `Invalid end, expected ${requirement}`,
             input,
           }),
         ],

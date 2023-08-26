@@ -1,5 +1,6 @@
 export * from "./custom/index";
 export * from "./endsWith/index";
+export * from "./notEndsWith/index";
 export * from "./equal/index";
 export * from "./finite/index";
 export * from "./includes/index";
@@ -9,4 +10,7 @@ export * from "./minLength/index";
 export * from "./minValue/index";
 export * from "./multipleOf/index";
 export * from "./startsWith/index";
+export * from "./notStartsWith/index";
 export * from "./value/index";
+export * from "./matches/index";
+export * from "./notMatches/index";

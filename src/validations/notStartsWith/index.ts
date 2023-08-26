@@ -9,17 +9,17 @@ import { getIssue } from "../../utils/index";
  *
  * @returns A validation function.
  */
-export function startsWith<TInput extends string>(
+export function notStartsWith<TInput extends string>(
   requirement: string,
   error?: string
 ) {
   return (input: TInput, info: ValidateInfo): ParseResult<TInput> => {
-    if (!input.startsWith(requirement as any)) {
+    if (input.startsWith(requirement as any)) {
       return {
         issues: [
           getIssue(info, {
-            validation: "starts_with",
-            message: error || `Invalid start, expect ${requirement}`,
+            validation: "not_starts_with",
+            message: error || `Invalid start, ${requirement} not allowed`,
             input,
           }),
         ],
