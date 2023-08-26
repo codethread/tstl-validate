@@ -3,8 +3,10 @@ import {
   type ObjectOutput,
   type ObjectSchema,
   type ObjectShape,
-  optional,
-  type OptionalSchema,
+  // optional,
+  nullable,
+  // type OptionalSchema,
+  type NullableSchema,
 } from "../../schemas/index";
 import type { BaseSchema, Pipe } from "../../types";
 import { getErrorAndPipe } from "../../utils/index";
@@ -13,12 +15,12 @@ import { getErrorAndPipe } from "../../utils/index";
  * Partial object schema type.
  */
 type Partial<TObjectShape extends ObjectShape> = {
-  [TKey in keyof TObjectShape]: OptionalSchema<TObjectShape[TKey]>;
+  [TKey in keyof TObjectShape]: NullableSchema<TObjectShape[TKey]>;
 };
 
 /**
  * Creates an object schema consisting of all properties of an existing object
- * schema set to optional.
+ * schema set to nullable.
  *
  * @param schema The affected schema.
  * @param pipe A validation and transformation pipe.
@@ -32,7 +34,7 @@ export function partial<TObjectSchema extends ObjectSchema<any>>(
 
 /**
  * Creates an object schema consisting of all properties of an existing object
- * schema set to optional.
+ * schema set to nullable.
  *
  * @param schema The affected schema.
  * @param error The error message.
@@ -60,7 +62,7 @@ export function partial<TObjectSchema extends ObjectSchema<any>>(
     Object.entries(schema.object).reduce(
       (object, [key, schema]: [any, any]) => ({
         ...object,
-        [key]: optional(schema as BaseSchema),
+        [key]: nullable(schema as BaseSchema),
       }),
       {}
     ) as Partial<TObjectSchema["object"]>,
